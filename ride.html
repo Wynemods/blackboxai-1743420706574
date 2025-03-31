@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride | Uber Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans">
+    <!-- Header (same as index.html) -->
+    <header class="bg-black text-white p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+            <span class="text-2xl font-bold">UBER</span>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-gray-300">Home</a>
+                <a href="eats.html" class="hover:text-gray-300">Eats</a>
+                <a href="freight.html" class="hover:text-gray-300">Freight</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="login.html" class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Ride Options Section -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Choose your ride</h1>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- UberX -->
+            <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <img src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg" 
+                     alt="UberX" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold mb-2">UberX</h2>
+                    <p class="text-gray-600 mb-4">Affordable, everyday rides</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-user-friends text-gray-500 mr-2"></i>
+                        <span>Up to 4 passengers</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-suitcase text-gray-500 mr-2"></i>
+                        <span>2 suitcases</span>
+                    </div>
+                    <button class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
+                        Choose UberX
+                    </button>
+                </div>
+            </div>
+
+            <!-- Uber Black -->
+            <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <img src="https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg" 
+                     alt="Uber Black" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold mb-2">Uber Black</h2>
+                    <p class="text-gray-600 mb-4">Premium rides in luxury cars</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-user-friends text-gray-500 mr-2"></i>
+                        <span>Up to 4 passengers</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-suitcase text-gray-500 mr-2"></i>
+                        <span>3 suitcases</span>
+                    </div>
+                    <button class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
+                        Choose Uber Black
+                    </button>
+                </div>
+            </div>
+
+            <!-- UberXL -->
+            <div class="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                <img src="https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg" 
+                     alt="UberXL" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-bold mb-2">UberXL</h2>
+                    <p class="text-gray-600 mb-4">Affordable rides for groups</p>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-user-friends text-gray-500 mr-2"></i>
+                        <span>Up to 6 passengers</span>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-suitcase text-gray-500 mr-2"></i>
+                        <span>4 suitcases</span>
+                    </div>
+                    <button class="w-full bg-black text-white py-2 rounded hover:bg-gray-800">
+                        Choose UberXL
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Price Estimate -->
+        <div class="mt-12 bg-gray-100 p-6 rounded-lg">
+            <h2 class="text-2xl font-bold mb-4">Price Estimate</h2>
+            <form>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Pickup location</label>
+                        <input type="text" class="w-full p-3 border rounded">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2">Destination</label>
+                        <input type="text" class="w-full p-3 border rounded">
+                    </div>
+                </div>
+                <button type="submit" 
+                        class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800">
+                    Get Estimate
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-black text-white p-8">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-bold mb-4">Company</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About us</a></li>
+                    <li><a href="#" class="hover:underline">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Products</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Ride</a></li>
+                    <li><a href="#" class="hover:underline">Eats</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Global citizenship</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Safety</a></li>
+                    <li><a href="#" class="hover:underline">Diversity</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Social</h3>
+                <div class="flex space-x-4">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
