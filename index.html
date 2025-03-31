@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WriteConnect - Freelance Writing Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/768472/pexels-photo-768472.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-8">
+            <span class="text-2xl font-bold text-blue-600">WriteConnect</span>
+            <nav class="hidden md:flex space-x-6">
+                <a href="jobs.html" class="text-gray-700 hover:text-blue-600 transition">Find Work</a>
+                <a href="post-job.html" class="text-gray-700 hover:text-blue-600 transition">Post a Job</a>
+                <a href="about.html" class="text-gray-700 hover:text-blue-600 transition">About</a>
+                <a href="contact.html" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Sign In</a>
+            <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Sign Up</a>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-96 flex items-center">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Connect with the best writing talent</h1>
+            <p class="text-xl text-white mb-8 max-w-2xl mx-auto">Find professional writers or showcase your skills to clients worldwide</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="register.html?role=freelancer" class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">Join as a Writer</a>
+                <a href="register.html?role=client" class="bg-blue-600 text-white px-6 py-3 rounded-md font-medium hover:bg-blue-700 transition">Hire Writers</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-user-tie text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">For Clients</h3>
+                    <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+                        <li>Post your writing job</li>
+                        <li>Review writer proposals</li>
+                        <li>Hire the best candidate</li>
+                        <li>Pay securely upon completion</li>
+                    </ol>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-pen-fancy text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">For Writers</h3>
+                    <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+                        <li>Create your profile</li>
+                        <li>Browse available jobs</li>
+                        <li>Submit proposals</li>
+                        <li>Get paid for your work</li>
+                    </ol>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-shield-alt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Secure Payments</h3>
+                    <p class="text-gray-600">Our escrow system ensures writers get paid and clients get quality work. No risk, no hassle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Categories -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Popular Job Categories</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <a href="jobs.html?category=writing" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="text-blue-600 mb-2">
+                        <i class="fas fa-feather-alt text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium">Content Writing</h3>
+                </a>
+                <a href="jobs.html?category=technical" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="text-blue-600 mb-2">
+                        <i class="fas fa-code text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium">Technical Writing</h3>
+                </a>
+                <a href="jobs.html?category=copywriting" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="text-blue-600 mb-2">
+                        <i class="fas fa-ad text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium">Copywriting</h3>
+                </a>
+                <a href="jobs.html?category=editing" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition text-center">
+                    <div class="text-blue-600 mb-2">
+                        <i class="fas fa-edit text-3xl"></i>
+                    </div>
+                    <h3 class="font-medium">Editing & Proofreading</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">Freelance Writer</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"WriteConnect has transformed my freelance career. I've found consistent, well-paying writing jobs and built long-term client relationships."</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Mark Williams</h4>
+                            <p class="text-gray-500 text-sm">Marketing Director</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Finding quality writers was always a challenge until we discovered WriteConnect. Now we have a roster of talented professionals we can rely on."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to get started?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join thousands of writers and clients collaborating on WriteConnect</p>
+            <a href="register.html" class="bg-white text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition inline-block">Sign Up Free</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WriteConnect</h3>
+                    <p class="text-gray-400">Connecting talented writers with clients who need quality content.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">For Writers</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Find Jobs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">For Clients</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Post a Job</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Browse Writers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 WriteConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple localStorage setup for demo purposes
+        if (!localStorage.getItem('jobs')) {
+            localStorage.setItem('jobs', JSON.stringify([]));
+        }
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify([]));
+        }
+    </script>
+</body>
+</html>
