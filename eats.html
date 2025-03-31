@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Eats | Uber Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .restaurant-card:hover .restaurant-image {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Header -->
+    <header class="bg-black text-white p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+            <span class="text-2xl font-bold">UBER EATS</span>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-gray-300">Home</a>
+                <a href="ride.html" class="hover:text-gray-300">Ride</a>
+                <a href="freight.html" class="hover:text-gray-300">Freight</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="login.html" class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Hero Search -->
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-6">Your favorite food, delivered</h1>
+            <div class="relative max-w-xl">
+                <input type="text" placeholder="Enter delivery address" 
+                       class="w-full p-4 pl-12 rounded-lg shadow-md">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Listings -->
+    <main class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Popular near you</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Restaurant 1 -->
+            <div class="restaurant-card rounded-lg overflow-hidden border hover:shadow-lg transition-all">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg" 
+                         alt="Italian Restaurant" 
+                         class="restaurant-image w-full h-48 object-cover transition-transform duration-300">
+                    <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-bold">
+                        4.5 ★
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Mama Mia Italian</h3>
+                    <p class="text-gray-600 text-sm mb-2">Italian • $$ • 0.8 mi</p>
+                    <p class="text-gray-500 text-sm">25-35 min • $1.99 delivery</p>
+                </div>
+            </div>
+
+            <!-- Restaurant 2 -->
+            <div class="restaurant-card rounded-lg overflow-hidden border hover:shadow-lg transition-all">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg" 
+                         alt="Sushi Restaurant" 
+                         class="restaurant-image w-full h-48 object-cover transition-transform duration-300">
+                    <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-bold">
+                        4.8 ★
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Tokyo Sushi</h3>
+                    <p class="text-gray-600 text-sm mb-2">Japanese • $$$ • 1.2 mi</p>
+                    <p class="text-gray-500 text-sm">30-45 min • $2.99 delivery</p>
+                </div>
+            </div>
+
+            <!-- Restaurant 3 -->
+            <div class="restaurant-card rounded-lg overflow-hidden border hover:shadow-lg transition-all">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.pexels.com/photos/1603901/pexels-photo-1603901.jpeg" 
+                         alt="Burger Joint" 
+                         class="restaurant-image w-full h-48 object-cover transition-transform duration-300">
+                    <div class="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-bold">
+                        4.3 ★
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg mb-1">Burger Palace</h3>
+                    <p class="text-gray-600 text-sm mb-2">American • $ • 0.5 mi</p>
+                    <p class="text-gray-500 text-sm">15-25 min • $0.99 delivery</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Categories -->
+        <h2 class="text-2xl font-bold mt-12 mb-6">Food categories</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-hamburger text-3xl mb-2 text-red-500"></i>
+                <p>Burgers</p>
+            </div>
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-pizza-slice text-3xl mb-2 text-orange-500"></i>
+                <p>Pizza</p>
+            </div>
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-fish text-3xl mb-2 text-blue-500"></i>
+                <p>Sushi</p>
+            </div>
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-ice-cream text-3xl mb-2 text-pink-500"></i>
+                <p>Desserts</p>
+            </div>
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-coffee text-3xl mb-2 text-brown-500"></i>
+                <p>Coffee</p>
+            </div>
+            <div class="text-center p-4 border rounded-lg hover:bg-gray-100 cursor-pointer">
+                <i class="fas fa-leaf text-3xl mb-2 text-green-500"></i>
+                <p>Healthy</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-black text-white p-8">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="font-bold mb-4">Company</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About us</a></li>
+                    <li><a href="#" class="hover:underline">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Products</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Ride</a></li>
+                    <li><a href="#" class="hover:underline">Eats</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Global citizenship</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Safety</a></li>
+                    <li><a href="#" class="hover:underline">Diversity</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-4">Social</h3>
+                <div class="flex space-x-4">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
