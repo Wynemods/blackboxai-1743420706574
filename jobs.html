@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Writing Jobs - WriteConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .job-card {
+            transition: all 0.2s ease;
+        }
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .filter-section {
+            transition: all 0.3s ease;
+        }
+        .active-filter {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-8">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">WriteConnect</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="jobs.html" class="text-blue-600 font-medium">Find Work</a>
+                <a href="profile.html" class="text-gray-700 hover:text-blue-600 transition">My Profile</a>
+                <a href="messages.html" class="text-gray-700 hover:text-blue-600 transition">Messages</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-gray-700 hover:text-blue-600">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="hidden md:inline">My Account</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                    <a href="profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                    <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                    <a href="#" onclick="logout()" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign Out</a>
+                </div>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <div class="w-full lg:w-1/4">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-bold">Filters</h2>
+                        <button class="text-blue-600 text-sm hover:text-blue-800" onclick="resetFilters()">Reset</button>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="mb-6">
+                        <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                        <div class="relative">
+                            <input type="text" id="search" placeholder="Job title or keywords"
+                                class="w-full pl-10 pr-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Job Type</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="job-type" value="one-time" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">One-time Project</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="job-type" value="ongoing" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Ongoing Work</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Budget Type -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Budget Type</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="budget-type" value="fixed" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Fixed Price</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="budget-type" value="hourly" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Hourly Rate</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Categories</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="category" value="content-writing" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Content Writing</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="category" value="copywriting" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Copywriting</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="category" value="technical-writing" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Technical Writing</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="category" value="editing-proofreading" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Editing & Proofreading</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="category" value="creative-writing" class="rounded text-blue-500" checked>
+                                <span class="ml-2 text-sm text-gray-700">Creative Writing</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Budget Range -->
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Budget Range</h3>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <input type="number" id="min-budget" placeholder="Min" 
+                                class="w-1/2 px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            <span>-</span>
+                            <input type="number" id="max-budget" placeholder="Max" 
+                                class="w-1/2 px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-700 mb-2">Required Skills</h3>
+                        <input type="text" id="skills-filter" placeholder="Filter by skills"
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs List -->
+            <div class="w-full lg:w-3/4">
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                        <h1 class="text-2xl font-bold mb-4 sm:mb-0">Available Writing Jobs</h1>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-600">Sort by:</span>
+                            <select id="sort-by" 
+                                class="px-3 py-1 border rounded-md focus:ring-blue-500 focus:border-blue-500 text-sm">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="highest-budget">Highest Budget</option>
+                                <option value="lowest-budget">Lowest Budget</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="jobs-container" class="space-y-4">
+                        <!-- Jobs will be loaded here -->
+                        <div class="text-center py-12 text-gray-400">
+                            <i class="fas fa-spinner fa-spin text-3xl mb-2"></i>
+                            <p>Loading jobs...</p>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-between items-center mt-8">
+                        <button id="prev-page" disabled
+                            class="px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-50 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <div class="text-sm text-gray-600">
+                            Page <span id="current-page">1</span> of <span id="total-pages">1</span>
+                        </div>
+                        <button id="next-page" disabled
+                            class="px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-50 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Global variables
+        let currentPage = 1;
+        const jobsPerPage = 5;
+        let allJobs = [];
+        let filteredJobs = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load jobs from localStorage
+            allJobs = JSON.parse(localStorage.getItem('jobs') || '[]');
+            
+            // Filter out jobs posted by the current user if they're a freelancer
+            if (currentUser.role === 'freelancer') {
+                allJobs = allJobs.filter(job => job.postedBy !== currentUser.id);
+            }
+
+            // Initial filter and display
+            filterJobs();
+            setupEventListeners();
+        });
+
+        // Set up event listeners for filters
+        function setupEventListeners() {
+            // Text search
+            document.getElementById('search').addEventListener('input', filterJobs);
+            
+            // Checkbox filters
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', filterJobs);
+            });
+            
+            // Budget range
+            document.getElementById('min-budget').addEventListener('input', filterJobs);
+            document.getElementById('max-budget').addEventListener('input', filterJobs);
+            
+            // Skills filter
+            document.getElementById('skills-filter').addEventListener('input', filterJobs);
+            
+            // Sort by
+            document.getElementById('sort-by').addEventListener('change', filterJobs);
+            
+            // Pagination
+            document.getElementById('prev-page').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayJobs();
+                }
+            });
+            
+            document.getElementById('next-page').addEventListener('click', () => {
+                const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayJobs();
+                }
+            });
+        }
+
+        // Filter jobs based on selected criteria
+        function filterJobs() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const selectedJobTypes = Array.from(document.querySelectorAll('input[name="job-type"]:checked')).map(el => el.value);
+            const selectedBudgetTypes = Array.from(document.querySelectorAll('input[name="budget-type"]:checked')).map(el => el.value);
+            const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked')).map(el => el.value);
+            const minBudget = document.getElementById('min-budget').value;
+            const maxBudget = document.getElementById('max-budget').value;
+            const skillsFilter = document.getElementById('skills-filter').value.toLowerCase();
+            const sortBy = document.getElementById('sort-by').value;
+
+            // Apply filters
+            filteredJobs = allJobs.filter(job => {
+                // Search term
+                if (searchTerm && !job.title.toLowerCase().includes(searchTerm) && 
+                    !job.description.toLowerCase().includes(searchTerm)) {
+                    return false;
+                }
+                
+                // Job type
+                if (selectedJobTypes.length > 0 && !selectedJobTypes.includes(job.type)) {
+                    return false;
+                }
+                
+                // Budget type
+                if (selectedBudgetTypes.length > 0 && !selectedBudgetTypes.includes(job.budgetType)) {
+                    return false;
+                }
+                
+                // Category
+                if (selectedCategories.length > 0 && !selectedCategories.includes(job.category)) {
+                    return false;
+                }
+                
+                // Budget range
+                if (minBudget && job.budgetAmount < minBudget) {
+                    return false;
+                }
+                if (maxBudget && job.budgetAmount > maxBudget) {
+                    return false;
+                }
+                
+                // Skills
+                if (skillsFilter && job.skills) {
+                    const jobSkills = job.skills.map(skill => skill.toLowerCase());
+                    const searchSkills = skillsFilter.split(',').map(skill => skill.trim());
+                    if (!searchSkills.some(skill => jobSkills.includes(skill))) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+
+            // Sort jobs
+            switch (sortBy) {
+                case 'newest':
+                    filteredJobs.sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt));
+                    break;
+                case 'oldest':
+                    filteredJobs.sort((a, b) => new Date(a.postedAt) - new Date(b.postedAt));
+                    break;
+                case 'highest-budget':
+                    filteredJobs.sort((a, b) => b.budgetAmount - a.budgetAmount);
+                    break;
+                case 'lowest-budget':
+                    filteredJobs.sort((a, b) => a.budgetAmount - b.budgetAmount);
+                    break;
+            }
+
+            // Reset to first page and display
+            currentPage = 1;
+            displayJobs();
+        }
+
+        // Display jobs for current page
+        function displayJobs() {
+            const startIndex = (currentPage - 1) * jobsPerPage;
+            const endIndex = startIndex + jobsPerPage;
+            const jobsToDisplay = filteredJobs.slice(startIndex, endIndex);
+            const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
+
+            // Update pagination controls
+            document.getElementById('current-page').textContent = currentPage;
+            document.getElementById('total-pages').textContent = totalPages;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages;
+
+            // Display jobs
+            const jobsContainer = document.getElementById('jobs-container');
+            
+            if (jobsToDisplay.length === 0) {
+                jobsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fas fa-search text-3xl mb-2"></i>
+                        <p>No jobs found matching your criteria</p>
+                        <button onclick="resetFilters()" class="mt-4 text-blue-600 hover:text-blue-800">
+                            Reset filters
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            jobsContainer.innerHTML = '';
+
+            jobsToDisplay.forEach(job => {
+                const jobDate = new Date(job.postedAt);
+                const deadlineDate = job.deadline ? new Date(job.deadline) : null;
+
+                const categoryNames = {
+                    'content-writing': 'Content Writing',
+                    'copywriting': 'Copywriting',
+                    'technical-writing': 'Technical Writing',
+                    'editing-proofreading': 'Editing & Proofreading',
+                    'creative-writing': 'Creative Writing',
+                    'academic-writing': 'Academic Writing',
+                    'scriptwriting': 'Scriptwriting',
+                    'translation': 'Translation'
+                };
+
+                const jobTypeNames = {
+                    'one-time': 'One-time Project',
+                    'ongoing': 'Ongoing Work'
+                };
+
+                const budgetTypeNames = {
+                    'fixed': 'Fixed Price',
+                    'hourly': 'Hourly Rate'
+                };
+
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card bg-white border rounded-lg p-6 hover:border-blue-500 cursor-pointer';
+                jobCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold">${job.title}</h3>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs whitespace-nowrap">
+                            $${job.budgetAmount} ${budgetTypeNames[job.budgetType]}
+                        </span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">${categoryNames[job.category]}</span>
+                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">${jobTypeNames[job.type]}</span>
+                        ${deadlineDate ? `
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">
+                                <i class="fas fa-clock mr-1"></i> ${deadlineDate.toLocaleDateString()}
+                            </span>
+                        ` : ''}
+                    </div>
+                    <div class="prose max-w-none text-sm mb-4 line-clamp-3">
+                        ${job.description}
+                    </div>
+                    ${job.skills && job.skills.length > 0 ? `
+                        <div class="mb-4">
+                            <h4 class="text-xs font-medium text-gray-500 mb-1">REQUIRED SKILLS</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${job.skills.map(skill => `
+                                    <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">${skill}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500">Posted ${jobDate.toLocaleDateString()}</span>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            View Details <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                `;
+                jobCard.addEventListener('click', () => {
+                    localStorage.setItem('currentJob', JSON.stringify(job));
+                    window.location.href = 'job-detail.html';
+                });
+                jobsContainer.appendChild(jobCard);
+            });
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            document.getElementById('search').value = '';
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            document.getElementById('min-budget').value = '';
+            document.getElementById('max-budget').value = '';
+            document.getElementById('skills-filter').value = '';
+            document.getElementById('sort-by').value = 'newest';
+            filterJobs();
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
