@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - WriteConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .profile-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+            transform: translateY(-1px);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-8">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">WriteConnect</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="jobs.html" class="text-gray-700 hover:text-blue-600 transition">Find Work</a>
+                <a href="profile.html" class="text-blue-600 font-medium">My Profile</a>
+                <a href="messages.html" class="text-gray-700 hover:text-blue-600 transition">Messages</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-gray-700 hover:text-blue-600">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="hidden md:inline">My Account</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                    <a href="profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                    <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                    <a href="#" onclick="logout()" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign Out</a>
+                </div>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Profile Header -->
+    <div class="profile-header text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-32 h-32 rounded-full border-4 border-white bg-gray-200 mb-6 md:mb-0 md:mr-8 overflow-hidden">
+                    <img id="profile-image" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" 
+                         alt="Profile" class="w-full h-full object-cover">
+                </div>
+                <div class="text-center md:text-left">
+                    <h1 class="text-3xl font-bold mb-2" id="profile-name">John Writer</h1>
+                    <p class="text-xl mb-4" id="profile-title">Content Writer & Editor</p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-4" id="profile-skills">
+                        <span class="skill-tag bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Content Writing</span>
+                        <span class="skill-tag bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Copywriting</span>
+                        <span class="skill-tag bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Editing</span>
+                    </div>
+                    <div class="flex items-center justify-center md:justify-start space-x-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-300 mr-1"></i>
+                            <span>4.9 (128 reviews)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>New York, USA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Left Sidebar -->
+            <div class="w-full md:w-1/3 lg:w-1/4">
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h3 class="font-bold text-lg mb-4">Quick Stats</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-gray-500 text-sm">Jobs Completed</p>
+                            <p class="text-2xl font-bold">87</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Earnings</p>
+                            <p class="text-2xl font-bold">$24,560</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-sm">Hourly Rate</p>
+                            <p class="text-2xl font-bold">$45/hr</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4">Contact Info</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-gray-500 mr-3 w-5"></i>
+                            <span id="profile-email">john@example.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-gray-500 mr-3 w-5"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe text-gray-500 mr-3 w-5"></i>
+                            <a href="#" class="text-blue-600 hover:underline">myportfolio.com</a>
+                        </div>
+                    </div>
+                    <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="w-full md:w-2/3 lg:w-3/4">
+                <!-- Tabs -->
+                <div class="bg-white rounded-lg shadow-sm mb-6">
+                    <div class="border-b border-gray-200">
+                        <nav class="flex -mb-px">
+                            <button onclick="switchTab('portfolio')" 
+                                class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-blue-500 text-blue-600">
+                                Portfolio
+                            </button>
+                            <button onclick="switchTab('reviews')" 
+                                class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                Reviews
+                            </button>
+                            <button onclick="switchTab('jobs')" 
+                                class="tab-button py-4 px-6 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                My Jobs
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="portfolio" class="tab-content active">
+                    <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold">My Work Samples</h3>
+                            <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                <i class="fas fa-plus mr-1"></i> Add Sample
+                            </button>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="border rounded-lg overflow-hidden">
+                                <div class="h-48 bg-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-file-alt text-5xl text-gray-400"></i>
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-bold mb-1">Blog Post: Tech Trends 2023</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Written for TechInsider Magazine</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Added: 2 months ago</span>
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border rounded-lg overflow-hidden">
+                                <div class="h-48 bg-gray-100 flex items-center justify-center">
+                                    <i class="fas fa-file-alt text-5xl text-gray-400"></i>
+                                </div>
+                                <div class="p-4">
+                                    <h4 class="font-bold mb-1">Product Descriptions</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Written for E-Commerce Store</p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">Added: 1 month ago</span>
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h3 class="text-xl font-bold mb-6">About Me</h3>
+                        <div class="prose max-w-none" id="profile-bio">
+                            <p>I'm a professional content writer with over 5 years of experience creating engaging, SEO-optimized content for various industries. My expertise includes blog writing, technical writing, copywriting, and editing.</p>
+                            <p>I specialize in making complex topics accessible to general audiences while maintaining accuracy and depth. My work has been featured in major publications and has helped businesses increase their online visibility and engagement.</p>
+                            <p>When I'm not writing, you can find me reading the latest industry news or working on my personal blog about technology trends.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reviews" class="tab-content">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h3 class="text-xl font-bold mb-6">Client Reviews</h3>
+                        <div class="space-y-6">
+                            <div class="border-b pb-6">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+                                    <div>
+                                        <h4 class="font-medium">Sarah Johnson</h4>
+                                        <div class="flex items-center">
+                                            <div class="flex text-yellow-400">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-500 ml-2">2 weeks ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">John delivered exceptional work on our blog series. His writing was engaging, well-researched, and required minimal editing. He met all deadlines and was very professional throughout the project.</p>
+                            </div>
+                            <div class="border-b pb-6">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+                                    <div>
+                                        <h4 class="font-medium">Michael Chen</h4>
+                                        <div class="flex items-center">
+                                            <div class="flex text-yellow-400">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="text-sm text-gray-500 ml-2">1 month ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700">Working with John was a pleasure. He took our technical product descriptions and made them accessible to our target audience without losing any of the important details. Will definitely hire again!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="jobs" class="tab-content">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h3 class="text-xl font-bold mb-6">My Jobs</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Job</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Earnings</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="font-medium">Blog Series (5 articles)</div>
+                                            <div class="text-sm text-gray-500">Tech Industry</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                                                <span>Sarah Johnson</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">Completed</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,250</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="font-medium">Product Descriptions</div>
+                                            <div class="text-sm text-gray-500">E-Commerce</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                                                <span>Michael Chen</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">Completed</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$850</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="font-medium">White Paper</div>
+                                            <div class="text-sm text-gray-500">Finance</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                                                <span>Emma Wilson</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-sm rounded-full bg-yellow-100 text-yellow-800">In Progress</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab switching
+        function switchTab(tabId) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('border-blue-500', 'text-blue-600');
+                button.classList.add('border-transparent', 'text-gray-500');
+            });
+            event.currentTarget.classList.add('border-blue-500', 'text-blue-600');
+            event.currentTarget.classList.remove('border-transparent', 'text-gray-500');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Load user data
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                // Set profile data
+                if (currentUser.firstName && currentUser.lastName) {
+                    document.getElementById('profile-name').textContent = 
+                        `${currentUser.firstName} ${currentUser.lastName}`;
+                }
+                if (currentUser.email) {
+                    document.getElementById('profile-email').textContent = currentUser.email;
+                }
+                if (currentUser.bio) {
+                    document.getElementById('profile-bio').innerHTML = currentUser.bio;
+                }
+                if (currentUser.skills) {
+                    const skillsContainer = document.getElementById('profile-skills');
+                    skillsContainer.innerHTML = '';
+                    currentUser.skills.forEach(skill => {
+                        const skillTag = document.createElement('span');
+                        skillTag.className = 'skill-tag bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm';
+                        skillTag.textContent = skill;
+                        skillsContainer.appendChild(skillTag);
+                    });
+                }
+                if (currentUser.profilePic) {
+                    document.getElementById('profile-image').src = currentUser.profilePic;
+                }
+            } else {
+                // Redirect to login if no user is logged in
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
