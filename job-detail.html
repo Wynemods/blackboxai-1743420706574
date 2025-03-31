@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - WriteConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .sticky-sidebar {
+            position: sticky;
+            top: 1rem;
+        }
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-8">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">WriteConnect</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="jobs.html" class="text-gray-700 hover:text-blue-600 transition">Find Work</a>
+                <a href="profile.html" class="text-gray-700 hover:text-blue-600 transition">My Profile</a>
+                <a href="messages.html" class="text-gray-700 hover:text-blue-600 transition">Messages</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="relative group">
+                <button class="flex items-center space-x-2 text-gray-700 hover:text-blue-600">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="hidden md:inline">My Account</span>
+                </button>
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                    <a href="profile.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+                    <a href="settings.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                    <a href="#" onclick="logout()" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign Out</a>
+                </div>
+            </div>
+            <button class="md:hidden text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Job Details -->
+            <div class="w-full lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h1 class="text-2xl font-bold" id="job-title">Loading job details...</h1>
+                            <div class="flex items-center mt-2">
+                                <span class="text-sm text-gray-500" id="job-posted-date"></span>
+                                <span class="mx-2 text-gray-300">•</span>
+                                <span class="text-sm text-gray-500" id="job-views">245 views</span>
+                                <span class="mx-2 text-gray-300">•</span>
+                                <span class="text-sm text-gray-500" id="job-applications">12 proposals</span>
+                            </div>
+                        </div>
+                        <button id="save-job" class="text-gray-400 hover:text-blue-600">
+                            <i class="far fa-bookmark text-xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-6" id="job-tags">
+                        <!-- Tags will be added here -->
+                    </div>
+
+                    <div class="prose max-w-none mb-8" id="job-description">
+                        <!-- Job description will be added here -->
+                    </div>
+
+                    <div class="border-t pt-6 mb-8">
+                        <h3 class="text-lg font-bold mb-4">Skills Required</h3>
+                        <div class="flex flex-wrap gap-2" id="job-skills">
+                            <!-- Skills will be added here -->
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-6">
+                        <h3 class="text-lg font-bold mb-4">About the Client</h3>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 rounded-full bg-gray-200 flex-shrink-0"></div>
+                            <div>
+                                <h4 class="font-medium" id="client-name">Loading...</h4>
+                                <p class="text-sm text-gray-500 mb-2" id="client-location">Location not specified</p>
+                                <p class="text-sm text-gray-500" id="client-jobs-posted">0 jobs posted</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Similar Jobs -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-bold mb-4">Similar Jobs</h2>
+                    <div class="space-y-4" id="similar-jobs">
+                        <div class="p-4 border rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-medium">Content Writer for Tech Blog</h3>
+                                <span class="text-blue-600 text-sm font-medium">$250</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1 line-clamp-2">Looking for an experienced tech writer to create engaging blog posts about the latest in software development and AI trends.</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">Content Writing</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">Technology</span>
+                            </div>
+                        </div>
+                        <div class="p-4 border rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-medium">SEO Article Writer</h3>
+                                <span class="text-blue-600 text-sm font-medium">$35/hr</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1 line-clamp-2">Need a writer to create SEO-optimized articles in the health and wellness niche. Must have experience with keyword research.</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">SEO</span>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">Health</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Sidebar -->
+            <div class="w-full lg:w-1/3">
+                <div class="sticky-sidebar">
+                    <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4">Submit a Proposal</h2>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Your Bid</label>
+                                <div class="flex items-center">
+                                    <span class="mr-2">$</span>
+                                    <input type="number" id="bid-amount" min="1" step="1"
+                                        class="flex-1 px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                    <span class="ml-2" id="bid-type">Fixed Price</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Estimated Time</label>
+                                <div class="flex items-center">
+                                    <input type="number" id="time-estimate" min="1" step="1"
+                                        class="flex-1 px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                    <span class="ml-2">days</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="cover-letter" class="block text-sm font-medium text-gray-700 mb-1">Cover Letter</label>
+                                <textarea id="cover-letter" rows="6"
+                                    class="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Explain why you're the best fit for this job..."></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Attachments (Optional)</label>
+                                <div class="flex items-center">
+                                    <input type="file" id="proposal-attachments" multiple
+                                        class="w-full px-3 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+
+                            <button id="submit-proposal" 
+                                class="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition">
+                                Submit Proposal
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-bold mb-4">Job Summary</h2>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Budget</span>
+                                <span class="font-medium" id="job-budget">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Posted</span>
+                                <span id="job-posted">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Category</span>
+                                <span id="job-category">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Job Type</span>
+                                <span id="job-type">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Experience Level</span>
+                                <span id="job-experience">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Load job details
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in and is a freelancer
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser || currentUser.role !== 'freelancer') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load job from localStorage
+            const job = JSON.parse(localStorage.getItem('currentJob'));
+            if (!job) {
+                window.location.href = 'jobs.html';
+                return;
+            }
+
+            // Display job details
+            displayJobDetails(job);
+            setupEventListeners();
+        });
+
+        // Display job details
+        function displayJobDetails(job) {
+            const jobDate = new Date(job.postedAt);
+            const deadlineDate = job.deadline ? new Date(job.deadline) : null;
+
+            const categoryNames = {
+                'content-writing': 'Content Writing',
+                'copywriting': 'Copywriting',
+                'technical-writing': 'Technical Writing',
+                'editing-proofreading': 'Editing & Proofreading',
+                'creative-writing': 'Creative Writing',
+                'academic-writing': 'Academic Writing',
+                'scriptwriting': 'Scriptwriting',
+                'translation': 'Translation'
+            };
+
+            const jobTypeNames = {
+                'one-time': 'One-time Project',
+                'ongoing': 'Ongoing Work'
+            };
+
+            const budgetTypeNames = {
+                'fixed': 'Fixed Price',
+                'hourly': 'Hourly Rate'
+            };
+
+            // Set basic job info
+            document.getElementById('job-title').textContent = job.title;
+            document.getElementById('job-posted-date').textContent = `Posted ${jobDate.toLocaleDateString()}`;
+            document.getElementById('job-budget').textContent = `$${job.budgetAmount} ${budgetTypeNames[job.budgetType]}`;
+            document.getElementById('job-posted').textContent = jobDate.toLocaleDateString();
+            document.getElementById('job-category').textContent = categoryNames[job.category];
+            document.getElementById('job-type').textContent = jobTypeNames[job.type];
+            document.getElementById('bid-type').textContent = budgetTypeNames[job.budgetType];
+
+            // Set bid amount to job budget by default
+            document.getElementById('bid-amount').value = job.budgetAmount;
+
+            // Set job description
+            document.getElementById('job-description').innerHTML = job.description;
+
+            // Set job tags
+            const tagsContainer = document.getElementById('job-tags');
+            tagsContainer.innerHTML = `
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">${categoryNames[job.category]}</span>
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">${jobTypeNames[job.type]}</span>
+            `;
+            if (deadlineDate) {
+                tagsContainer.innerHTML += `
+                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
+                        <i class="fas fa-clock mr-1"></i> ${deadlineDate.toLocaleDateString()}
+                    </span>
+                `;
+            }
+
+            // Set required skills
+            const skillsContainer = document.getElementById('job-skills');
+            if (job.skills && job.skills.length > 0) {
+                job.skills.forEach(skill => {
+                    const skillTag = document.createElement('span');
+                    skillTag.className = 'bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm';
+                    skillTag.textContent = skill;
+                    skillsContainer.appendChild(skillTag);
+                });
+            } else {
+                skillsContainer.innerHTML = '<span class="text-gray-500">No specific skills required</span>';
+            }
+
+            // Load client info (mock data for now)
+            document.getElementById('client-name').textContent = 'Client Name';
+            document.getElementById('client-location').textContent = 'United States';
+            document.getElementById('client-jobs-posted').textContent = '12 jobs posted';
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Save job button
+            document.getElementById('save-job').addEventListener('click', function() {
+                this.classList.toggle('text-blue-600');
+                this.innerHTML = this.classList.contains('text-blue-600') 
+                    ? '<i class="fas fa-bookmark text-xl"></i>' 
+                    : '<i class="far fa-bookmark text-xl"></i>';
+                
+                // Show feedback
+                const feedback = document.createElement('div');
+                feedback.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg';
+                feedback.textContent = this.classList.contains('text-blue-600') 
+                    ? 'Job saved to your favorites' 
+                    : 'Job removed from favorites';
+                document.body.appendChild(feedback);
+                setTimeout(() => feedback.remove(), 3000);
+            });
+
+            // Submit proposal button
+            document.getElementById('submit-proposal').addEventListener('click', submitProposal);
+        }
+
+        // Submit proposal
+        function submitProposal() {
+            const bidAmount = document.getElementById('bid-amount').value;
+            const timeEstimate = document.getElementById('time-estimate').value;
+            const coverLetter = document.getElementById('cover-letter').value;
+
+            if (!bidAmount || !timeEstimate || !coverLetter) {
+                alert('Please fill all required fields');
+                return;
+            }
+
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const job = JSON.parse(localStorage.getItem('currentJob'));
+
+            // Create proposal
+            const proposal = {
+                id: 'prop_' + Math.random().toString(36).substr(2, 9),
+                jobId: job.id,
+                freelancerId: currentUser.id,
+                bidAmount: bidAmount,
+                timeEstimate: timeEstimate,
+                coverLetter: coverLetter,
+                submittedAt: new Date().toISOString(),
+                status: 'submitted'
+            };
+
+            // Save to localStorage
+            const proposals = JSON.parse(localStorage.getItem('proposals') || '[]');
+            proposals.push(proposal);
+            localStorage.setItem('proposals', JSON.stringify(proposals));
+
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+            successMessage.innerHTML = `
+                <div class="bg-white p-8 rounded-lg max-w-md text-center">
+                    <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Proposal Submitted</h3>
+                    <p class="text-gray-600 mb-4">Your proposal has been successfully submitted to the client.</p>
+                    <button onclick="closeSuccessMessage()" 
+                        class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                        Continue
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(successMessage);
+        }
+
+        // Close success message
+        function closeSuccessMessage() {
+            document.querySelector('.fixed.inset-0').remove();
+            window.location.href = 'jobs.html';
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
