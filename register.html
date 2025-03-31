@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - WriteConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .role-card {
+            transition: all 0.3s ease;
+        }
+        .role-card:hover {
+            transform: translateY(-2px);
+        }
+        .role-card.selected {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-blue-600">WriteConnect</a>
+            <a href="login.html" class="text-gray-700 hover:text-blue-600 transition">Already have an account? Sign In</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm overflow-hidden">
+            <!-- Progress Steps -->
+            <div class="px-8 py-6 border-b">
+                <div class="flex justify-between">
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center mb-1">1</div>
+                        <span class="text-sm font-medium">Select Role</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-1">2</div>
+                        <span class="text-sm text-gray-500">Account Details</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center mb-1">3</div>
+                        <span class="text-sm text-gray-500">Profile Setup</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Role Selection -->
+            <div id="step-1" class="p-8">
+                <h1 class="text-2xl font-bold mb-2">Join as a writer or client</h1>
+                <p class="text-gray-600 mb-8">Select your role to get started</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="role-card border-2 border-gray-200 rounded-lg p-6 cursor-pointer transition"
+                         onclick="selectRole('freelancer')">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-pen-fancy text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I'm a Writer</h3>
+                        <p class="text-gray-600">Join to find writing jobs and build your portfolio</p>
+                    </div>
+                    <div class="role-card border-2 border-gray-200 rounded-lg p-6 cursor-pointer transition"
+                         onclick="selectRole('client')">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-user-tie text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I'm a Client</h3>
+                        <p class="text-gray-600">Join to find and hire professional writers</p>
+                    </div>
+                </div>
+
+                <button id="continue-btn" disabled
+                    class="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                    onclick="nextStep()">
+                    Continue
+                </button>
+            </div>
+
+            <!-- Step 2: Account Details -->
+            <div id="step-2" class="p-8 hidden">
+                <h1 class="text-2xl font-bold mb-2">Create your account</h1>
+                <p class="text-gray-600 mb-8">Enter your basic information</p>
+                
+                <form id="account-form" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                            <input type="text" id="first-name" required
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                            <input type="text" id="last-name" required
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" required
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="password" required minlength="8"
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters</p>
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                        <input type="password" id="confirm-password" required
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </form>
+
+                <div class="flex justify-between mt-8">
+                    <button onclick="prevStep()"
+                        class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+                        Back
+                    </button>
+                    <button onclick="nextStep()"
+                        class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Profile Setup -->
+            <div id="step-3" class="p-8 hidden">
+                <h1 class="text-2xl font-bold mb-2">Complete your profile</h1>
+                <p class="text-gray-600 mb-8">Tell us more about yourself</p>
+                
+                <form id="profile-form" class="space-y-4">
+                    <!-- Common Fields -->
+                    <div>
+                        <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                        <textarea id="bio" rows="3"
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <label for="profile-pic" class="block text-sm font-medium text-gray-700 mb-1">Profile Picture</label>
+                        <input type="file" id="profile-pic" accept="image/*"
+                            class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Freelancer Specific Fields -->
+                    <div id="freelancer-fields" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Skills</label>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center">
+                                    Content Writing <button type="button" class="ml-1 text-blue-600 hover:text-blue-800">&times;</button>
+                                </span>
+                            </div>
+                            <div class="flex">
+                                <input type="text" id="new-skill" placeholder="Add a skill"
+                                    class="flex-1 px-4 py-2 border rounded-l-md focus:ring-blue-500 focus:border-blue-500">
+                                <button type="button" onclick="addSkill()"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 transition">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="portfolio" class="block text-sm font-medium text-gray-700 mb-1">Portfolio Links</label>
+                            <input type="url" id="portfolio" placeholder="https://yourportfolio.com"
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="rate" class="block text-sm font-medium text-gray-700 mb-1">Hourly Rate ($)</label>
+                            <input type="number" id="rate" min="0" step="5"
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Client Specific Fields -->
+                    <div id="client-fields" class="space-y-4 hidden">
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                            <input type="text" id="company"
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="industry" class="block text-sm font-medium text-gray-700 mb-1">Industry</label>
+                            <select id="industry"
+                                class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select Industry</option>
+                                <option value="technology">Technology</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="education">Education</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="flex justify-between mt-8">
+                    <button onclick="prevStep()"
+                        class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+                        Back
+                    </button>
+                    <button onclick="registerUser()"
+                        class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                        Complete Registration
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Global variables
+        let currentStep = 1;
+        let selectedRole = '';
+        const skills = ['Content Writing']; // Default skill
+
+        // Role selection
+        function selectRole(role) {
+            selectedRole = role;
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            document.getElementById('continue-btn').disabled = false;
+        }
+
+        // Form navigation
+        function nextStep() {
+            if (currentStep === 1 && !selectedRole) return;
+            if (currentStep === 2 && !validateAccountForm()) return;
+
+            document.getElementById(`step-${currentStep}`).classList.add('hidden');
+            currentStep++;
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+
+            // Show role-specific fields in step 3
+            if (currentStep === 3) {
+                if (selectedRole === 'freelancer') {
+                    document.getElementById('freelancer-fields').classList.remove('hidden');
+                    renderSkills();
+                } else {
+                    document.getElementById('client-fields').classList.remove('hidden');
+                }
+            }
+
+            updateProgressSteps();
+        }
+
+        function prevStep() {
+            document.getElementById(`step-${currentStep}`).classList.add('hidden');
+            currentStep--;
+            document.getElementById(`step-${currentStep}`).classList.remove('hidden');
+            updateProgressSteps();
+        }
+
+        function updateProgressSteps() {
+            const steps = document.querySelectorAll('.flex.flex-col.items-center div');
+            steps.forEach((step, index) => {
+                if (index < currentStep) {
+                    step.classList.remove('bg-gray-200', 'text-gray-600');
+                    step.classList.add('bg-blue-600', 'text-white');
+                } else {
+                    step.classList.remove('bg-blue-600', 'text-white');
+                    step.classList.add('bg-gray-200', 'text-gray-600');
+                }
+            });
+        }
+
+        // Form validation
+        function validateAccountForm() {
+            const form = document.getElementById('account-form');
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!form.checkValidity()) {
+                alert('Please fill all required fields correctly');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Skills management
+        function renderSkills() {
+            const container = document.querySelector('.flex.flex-wrap.gap-2.mb-2');
+            container.innerHTML = '';
+            skills.forEach(skill => {
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center';
+                skillTag.innerHTML = `${skill} <button type="button" class="ml-1 text-blue-600 hover:text-blue-800" onclick="removeSkill('${skill}')">&times;</button>`;
+                container.appendChild(skillTag);
+            });
+        }
+
+        function addSkill() {
+            const input = document.getElementById('new-skill');
+            const skill = input.value.trim();
+            if (skill && !skills.includes(skill)) {
+                skills.push(skill);
+                renderSkills();
+                input.value = '';
+            }
+        }
+
+        function removeSkill(skill) {
+            const index = skills.indexOf(skill);
+            if (index > -1) {
+                skills.splice(index, 1);
+                renderSkills();
+            }
+        }
+
+        // Registration
+        function registerUser() {
+            if (!validateAccountForm()) return;
+
+            const user = {
+                id: generateId(),
+                role: selectedRole,
+                firstName: document.getElementById('first-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                bio: document.getElementById('bio').value,
+                profilePic: document.getElementById('profile-pic').files[0]?.name || '',
+                createdAt: new Date().toISOString()
+            };
+
+            if (selectedRole === 'freelancer') {
+                user.skills = skills;
+                user.portfolio = document.getElementById('portfolio').value;
+                user.rate = document.getElementById('rate').value;
+            } else {
+                user.company = document.getElementById('company').value;
+                user.industry = document.getElementById('industry').value;
+            }
+
+            // Save to localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            users.push(user);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Redirect to appropriate dashboard
+            window.location.href = selectedRole === 'freelancer' ? 'profile.html' : 'post-job.html';
+        }
+
+        function generateId() {
+            return 'user_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // Initialize form if role is in URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role');
+            if (role && ['freelancer', 'client'].includes(role)) {
+                selectRole(role);
+                document.querySelector(`.role-card[onclick="selectRole('${role}')"]`).click();
+            }
+        });
+    </script>
+</body>
+</html>
